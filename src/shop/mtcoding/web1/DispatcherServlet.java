@@ -1,5 +1,7 @@
 package shop.mtcoding.web1;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import shop.mtcoding.web1.config.MessageConverter;
 import shop.mtcoding.web1.controller.BoardController;
 import shop.mtcoding.web1.controller.UserController;
 import shop.mtcoding.web1.model.Board;
@@ -25,7 +27,6 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json; charset=utf-8");
-        resp.getWriter().println(req.getRequestURI() + " : 요청됨");
 
         String path = getPath(req);
         String action = getAction(req);
@@ -65,10 +66,10 @@ public class DispatcherServlet extends HttpServlet {
                     req.getRequestDispatcher(listView).forward(req, resp);
                     break;
                 case "detail":
-                    String detailView = boardCon.detail();
-                    Board boardValue = boardRepository.findById(1);
-                    req.setAttribute("boardKey", boardValue);
-                    req.getRequestDispatcher(detailView).forward(req, resp);
+                    // json 리턴
+                    Board board = boardCon.detail(1);
+                    String boardJson = MessageConverter.reslove(board);
+                    resp.getWriter().println(boardJson);
                     break;
                 default:
                     resp.sendRedirect("/");

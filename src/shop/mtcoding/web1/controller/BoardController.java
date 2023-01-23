@@ -1,6 +1,7 @@
 package shop.mtcoding.web1.controller;
 
 import shop.mtcoding.web1.config.ViewResolver;
+import shop.mtcoding.web1.model.Board;
 
 public class BoardController{
     private BoardController(){}
@@ -13,9 +14,13 @@ public class BoardController{
         System.out.println("list : 요청됨");
         return ViewResolver.resolve("/board/list");
     }
-    public String detail(){
+    public Board detail(int id){
         System.out.println("detail : 요청됨");
-        return ViewResolver.resolve("/board/detail");
+        Board board = new Board();
+        board.setId(id);
+        board.setTitle("제목 "+id);
+        board.setUserId(1);
+        return board;
     }
 
     public String write(){
