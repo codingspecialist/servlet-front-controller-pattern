@@ -15,7 +15,7 @@ public class BoardController{
         return ViewResolver.resolve("/board/list");
     }
     public Board detail(int id){
-        // json 응답 234
+        // json 응답 2345
         System.out.println("detail : 요청됨");
         Board board = new Board();
         board.setId(id);
