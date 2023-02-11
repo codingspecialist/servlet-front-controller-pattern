@@ -5,7 +5,7 @@
       <element id="javaee-facet-resources" facet="web1/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="web1" />
+          <element id="module-output" name="servlet-request-dispatcher" />
         </element>
       </element>
     </root>
